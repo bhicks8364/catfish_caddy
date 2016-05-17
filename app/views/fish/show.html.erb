@@ -1,0 +1,40 @@
+<h2 class="color text-<%= fish_color(@fish) %>"><%= @fish.color.name %></h2>
+<div class="col-md-6 color-block <%= @fish.color.present? ? @fish.color.name.downcase : "" %>">
+<div id="alert-status"></div>
+<h1 id="status" class="bold text-right">
+  <%= status(@fish) %><br>
+  <%= link_to 'Edit', edit_fish_path(@fish), class: "btn btn-default" if @fish.returned   %> 
+</h1>
+<div id="alert-status"><h2><%= link_to "Throw Back", throw_back_tournament_fish_path(@tournament, @fish), id: "throw-btn", method: :patch, remote: true if !@fish.returned %></h2></div>
+
+<h1>
+  <strong>Weight:</strong>
+  <%= @fish.weight %>
+</h1>
+<div class="btn-group">
+  <%= link_to 'Edit', edit_fish_path(@fish), class: "btn btn-default" if !@fish.returned %>
+  <%= link_to 'Back to Tournament', tournament_path(@tournament), class: "btn btn-default" %>
+  <%= link_to 'Back', fish_index_path, class: "btn btn-default"  %>
+</div>
+<hr>
+  
+<p>
+  <strong>Over 28:</strong>
+  <%= @fish.over_28 %>
+</p>
+
+<p class="lead">
+  <strong>Tournament:</strong>
+  <%= link_to @fish.tournament.name, @fish.tournament %>
+</p>
+ 
+</div>
+<div class="col-md-6 well">
+    <% if @fish.image_id? %>
+      <%= image_tag attachment_url(@fish, :image, :fill, 300, 300) %>
+  <%else %>
+      <p>No Image</p>
+  <% end %>
+ </div>
+
+

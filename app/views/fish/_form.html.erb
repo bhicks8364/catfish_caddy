@@ -1,0 +1,25 @@
+<%= simple_form_for(@fish) do |f| %>
+  <%= f.error_notification %>
+  
+  <div class="form-inputs">
+    <%= f.association :member, label_method: :full_name, value_method: :id, include_blank: false if !@fish.new_record? %>
+    <%= f.association :tournament, include_blank: false if @tournament.nil? %>
+    <%= f.input :tournament_id, label: false, input_html: {value: @tournament.id, class: "hide-this"} if @tournament.present? %>
+    <%= f.association :color, collection: @tournament.available_colors, include_blank: false if @tournament.present? %>
+    <%= f.association :color, include_blank: false if @tournament.nil? %>
+    <%= f.input :weight %>
+    <%= f.input :over_28, label: "Over 28 inches?" %>
+    
+    <%= f.input :returned if !@fish.new_record? %>
+  </div>
+  <%= f.attachment_field :image %>
+ <% if @fish.image_id? %>
+      <%= image_tag attachment_url(@fish, :image, :fill, 100, 100) %>
+
+      <%= f.check_box :remove_image %>
+      <%= f.label :remove_image %>
+    <% end %>
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

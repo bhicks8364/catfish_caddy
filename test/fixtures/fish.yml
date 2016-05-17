@@ -1,0 +1,37 @@
+# == Schema Information
+#
+# Table name: fish
+#
+#  id            :integer          not null, primary key
+#  color_id      :integer
+#  weight        :decimal(, )
+#  over_28       :boolean
+#  tournament_id :integer
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  returned      :boolean          default("false")
+#  image_id      :string
+#  member_id     :integer
+#
+# Indexes
+#
+#  index_fish_on_color_id       (color_id)
+#  index_fish_on_member_id      (member_id)
+#  index_fish_on_tournament_id  (tournament_id)
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  color_id: 1
+  weight: 9.99
+  over_28: false
+  tournament_id: 1
+  user_id: 1
+
+two:
+  color_id: 1
+  weight: 9.99
+  over_28: false
+  tournament_id: 1
+  user_id: 1

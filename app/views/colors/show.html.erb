@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+<div class="col-md-12 color-block <%= @color.name.present? ? @color.name.downcase : "" %>">
+  <p>
+    <strong>Name:</strong>
+    <%= @color.name %>
+  </p>
+  
+  <%= link_to 'Edit', edit_color_path(@color) %> |
+  <%= link_to 'Back', colors_path %>
+
+</div>

@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h1>All Colors</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @colors.each do |color| %>
+      <tr class="<%= color.name.present? ? color.name.downcase : "" %>">
+        <td><%= link_to color.name, color %></td>
+        <td><%= link_to 'Edit', edit_color_path(color) %></td>
+        <td><%= link_to 'Destroy', color, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Color', new_color_path, class: "btn btn-default" %>
+
+<%= link_to 'New Fish', new_fish_path, class: "btn btn-default"  %>

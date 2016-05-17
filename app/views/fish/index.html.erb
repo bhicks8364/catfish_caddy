@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Fish</h1>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Color</th>
+      <th>Weight</th>
+      <th>Over 28</th>
+      <th>Tournament</th>
+      <th>User</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @fish.each do |fish| %>
+      <tr class="<%= fish.color.name.present? ? fish.color.name.downcase : "" %>">
+        <td><%= link_to fish.color.name, fish %><br><%= status(fish) %></td>
+        <td><%= fish.weight %></td>
+        <td><%= fish.over_28 ? "Yes" : "No" %></td>
+        <td><%= fish.tournament.present? ? fish.tournament.name : "" %></td>
+        <td><p><%= fish.member.present? ? fish.member.full_name : "Nobody" %></p><%= link_to 'Edit', edit_fish_path(fish) %><br><%= link_to 'Destroy', fish, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Fish', new_fish_path, class: "btn btn-default" %>

@@ -1,0 +1,12 @@
+<%= link_to fish do %>
+
+<div class="col-md-12 border">
+ 
+  <p><%= fish.member.try(:username) %> <span class="small pull-right"><%= time_ago_in_words(fish.created_at) %></span></p>
+  <div class="col-md-6">
+     <%= image_tag("fish_1.png", class: "icon #{ fish.color.name.present? ? fish.color.name.downcase : "" }") %>
+    <span class="color text-<%= fish_color(fish) %>"><%= pluralize(fish.weight, "lb") %></span>
+    <% end %>
+  </div>
+ 
+</div>

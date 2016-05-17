@@ -1,0 +1,41 @@
+<h1 class="bold text-center">
+  <%= @tournament.name %>
+</h1>
+
+<div class="col-md-6">
+  
+ 
+  <%= link_to 'New Fish', new_tournament_fish_path(@tournament), class: "btn btn-success btn-lg btn-block"  %>
+
+<%= render @tournament.members.distinct %>
+  <h2>Stringer Total: <%= pluralize(@tournament.stringer_total, "lb") %></h2>
+  <h4>Returned Total: <%= pluralize(@tournament.returned_total, "lb") %></h4>
+  <p>
+    <strong>Location:</strong> <%= @tournament.location %> |    <strong>Date:</strong> <%= @tournament.date %>
+    <hr>
+    <%= link_to 'Edit', edit_tournament_path(@tournament), class: "btn btn-default"  %> 
+  </p>
+</div>
+
+<div class="col-md-6  well well-sm">
+  <% if @stringer_count == 6  %>
+  
+    <h2> Next to go <hr><%= render @tournament.on_deck %></h2>
+    
+  <% end %>
+  <hr>
+  <div class="col-md-12">
+    <h1>Stringer <span class="badge"><%= @stringer_count %></span></h1>
+    
+    <%= render @tournament.fish.on_stringer.order(weight: :desc) %>
+  </div>
+</div>
+
+<div class="col-md-6">
+  <h1>Returned</h1>
+  <%= render @tournament.fish.returned.order(weight: :desc) %>
+</div>
+
+
+<hr>
+

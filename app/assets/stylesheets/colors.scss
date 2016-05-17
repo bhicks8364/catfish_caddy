@@ -1,0 +1,115 @@
+// Place all the styles related to the Colors controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.color-block {
+    height: 500px;
+    width: 500px;
+    padding: 30px;
+    font-weight: bold;
+    font-color: black;
+}
+.red {
+    background-color: rgba(251, 12, 12, 0.87);
+    color: white;
+    a {
+        color: white;
+    }
+}
+.yellow {
+    background-color: yellow;
+    color: black;
+    a {
+        color: black;
+    }
+    
+}
+.blue {
+    background-color: blue;
+    color: white;
+    a {
+        color: white;
+    }
+}
+.green {
+    background-color: green;
+    a {
+        color: white;
+    }
+}
+.orange {
+    background-color: orange;
+    color: black;
+    a {
+        color: black;
+    }
+}
+.white {
+    background-color: white;
+    a {
+        color: black;
+    }
+}
+.btn.btn-default {
+    color: black;
+}
+.border {
+    border: 1px solid black;
+    padding: 2px;
+}
+.color {
+    line-height: 200%;
+}
+.text-red {
+    color: red;
+}
+.text-blue {
+    color: blue;
+}
+.text-green {
+    color: green;
+}
+.text-yellow {
+    color: black;
+   -webkit-text-fill-color: yellow; /* Will override color (regardless of order) */
+   -webkit-text-stroke-width: 1px;
+   -webkit-text-stroke-color: black;
+}
+.text-orange {
+    color: orange;
+}
+.text-white {
+    -webkit-text-stroke-width: 1px;
+   -webkit-text-stroke-color: black;
+   color: white;
+    font-weight: bold;
+}
+.fishing {
+    background-image: url("fishing.png");
+    width: 200px;
+    height: 200px;
+    margin-left: 25px;
+    margin-top: 25px;
+}
+.dark {
+    background: url("bubbles-on-blue-background.jpg");
+    // background-size: 80px 60px;
+    background-repeat: no-repeat;
+    // background-color: black;
+    padding: 25px;
+    width: 200px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+.flipped {
+        -moz-transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+        filter: FlipH;
+        -ms-filter: "FlipH";
+}
+.bg-dark {
+    // background-color: rgba(0,0,0,0.9);
+    // font-weight: bold;
+}
