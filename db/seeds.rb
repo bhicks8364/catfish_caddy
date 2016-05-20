@@ -3,5 +3,5 @@
 #
 # Examples:
 #
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
+Color.create([{ name: 'Red' }, { name: 'Orange' }, { name: 'Green' }, { name: 'Blue' }, { name: 'White' }, { name: 'Yellow' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)

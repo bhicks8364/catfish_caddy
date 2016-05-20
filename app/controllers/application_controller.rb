@@ -2,11 +2,14 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  before_action :set_latest
+  before_action :set_latest, :set_current_member
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
   def after_sign_in_path(resource)
+    root_path
+  end
+  def after_sign_up_path(resource)
     root_path
   end
   def configure_permitted_parameters
@@ -17,5 +20,10 @@ class ApplicationController < ActionController::Base
   end
   def set_latest
     @current_tournament = Tournament.current.last
+  end
+  def set_current_member
+    if member_signed_in?
+      @current_member = current_member
+    end
   end
 end

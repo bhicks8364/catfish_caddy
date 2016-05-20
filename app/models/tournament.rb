@@ -16,9 +16,11 @@ class Tournament < ActiveRecord::Base
     has_many :stringer_fish, -> { where(returned: false) }, class_name: "Fish"
     has_many :colors, through: :stringer_fish
     has_many :members, through: :fish
-    scope :current, -> {
+    scope :current, -> { where(status: "Open")}
+    scope :upcoming, -> {
                     start = Date.current
-                    where(date: start.to_date)}
+                    ending = Date.current + 14.days
+                    where(date: start...ending)}
     def to_param
         if name.present?
             "#{id}-#{name.parameterize }"

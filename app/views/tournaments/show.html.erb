@@ -1,12 +1,11 @@
+<div class="col-md-12 col-xs-12 mainpage">
 <h1 class="bold text-center">
   <%= @tournament.name %>
+  <span class="bold pull-right">Status: <%= @tournament.status %></span>
 </h1>
-
-<div class="col-md-6">
-  
  
-  <%= link_to 'New Fish', new_tournament_fish_path(@tournament), class: "btn btn-success btn-lg btn-block"  %>
-
+<div class="col-md-6">
+  <%= link_to 'New Fish', new_tournament_fish_path(@tournament), class: "btn btn-success btn-lg big-btn"  %>
 <%= render @tournament.members.distinct %>
   <h2>Stringer Total: <%= pluralize(@tournament.stringer_total, "lb") %></h2>
   <h4>Returned Total: <%= pluralize(@tournament.returned_total, "lb") %></h4>
@@ -24,18 +23,19 @@
     
   <% end %>
   <hr>
-  <div class="col-md-12">
+  <div class="col-md-12" id="stringer">
     <h1>Stringer <span class="badge"><%= @stringer_count %></span></h1>
     
     <%= render @tournament.fish.on_stringer.order(weight: :desc) %>
   </div>
 </div>
-
+<% if @tournament.fish.returned.any? %>
 <div class="col-md-6">
   <h1>Returned</h1>
   <%= render @tournament.fish.returned.order(weight: :desc) %>
 </div>
+<% end %>
 
 
-<hr>
+</div>
 

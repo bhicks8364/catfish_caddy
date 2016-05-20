@@ -5,18 +5,17 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
- <%= render "layouts/navbar" %>
+
 <body>
- 
-<div class="container">
-  <div class="col-md-12 mainpage">
-    <p id="notice"><%= notice %></p>
-    <p id="alert"><%= alert %></p>
+ <%= render "layouts/navbar" %>
+   
+  <div class="container mainpage">
+<%= render "layouts/alerts" %>
     <%= yield %>
   </div>
   
-</div>
 
 
 </body>

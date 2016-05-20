@@ -38,14 +38,14 @@ class FishController < ApplicationController
   def new
     if params[:tournament_id].present?
       @tournament = Tournament.find(params[:tournament_id])
-      if @tournament.available_colors.none?
+      if @tournament.fish.any? && @tournament.available_colors.none?
         redirect_to @tournament, notice: "All of the colors are in use. Please throw a fish back before continuing."
       end
       @fish = @tournament.fish.new
     else
       @fish = Fish.new
     end
-    @fish.member = current_member
+    @fish.member = @current_member
   end
 
   # GET /fish/1/edit
@@ -61,7 +61,7 @@ class FishController < ApplicationController
     else
       @fish = Fish.new(fish_params)
     end
-    @fish.member = current_member
+    @fish.member = @current_member
     respond_to do |format|
       if @fish.save
         format.html { redirect_to @fish.tournament, notice: 'Fish was successfully created.' }

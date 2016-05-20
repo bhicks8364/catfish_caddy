@@ -42,12 +42,13 @@
 
 Rails.application.routes.draw do
   resources :tweets
-  get 'members/index'
-
-  get 'members/show'
+  # get 'members/index'
+  
+  # get 'members/:id'
 
   resources :teams
   devise_for :members
+  resources :members
   get 'main/index'
 
   resources :tournaments do

@@ -32,4 +32,8 @@ class Member < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  
+  def me?
+    email == "bhicks8364@gmail.com"
+  end
 end

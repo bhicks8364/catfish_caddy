@@ -1,4 +1,5 @@
-<h1 class="bold text-center"><%= welcome %></h1>
+<div class="col-md-12 mainpage">
+    <h1 class="bold text-center"><%= welcome %></h1>
 <hr>
 <div class="col-md-3"></div>
 <div class="col-md-6 well text-center">
@@ -8,20 +9,26 @@
     <h2><%= link_to @current_tournament.name, @current_tournament %></h2>
     <p> <%= @current_tournament.date.strftime("%B %d, %Y")  %> at  <%= @current_tournament.location %></p>
      <hr>
-        <%= link_to "New Fish", new_tournament_fish_path(@current_tournament), class: "btn btn-success btn-lg btn-block" %>
+        <%= link_to "New Fish", new_tournament_fish_path(@current_tournament), class: "btn btn-success btn-lg btn-block big-btn" %>
         
     <% else %>
-        <%= link_to "Start A New Tournament", new_tournament_path, class: "btn btn-success" %>
+        <%= link_to "Start A New Tournament", new_tournament_path, class: "btn btn-success btn-lg btn-block big-btn" %>
     <% end %>
     <% else %>
-        <%= link_to "SIGN UP", new_member_registration_path, class: "btn btn-default btn-lg btn-block" %>
+        <%= link_to "SIGN UP", new_member_registration_path, class: "btn btn-default btn-lg btn-block big-btn" %>
         <h3>Or</h3>
-        <%= link_to "SIGN IN", new_member_session_path, class: "btn btn-default btn-lg btn-block" %>
+        <%= link_to "SIGN IN", new_member_session_path, class: "btn btn-default btn-lg btn-block big-btn" %>
     <% end %>
     <hr>
+    
+</div>
+<div class="col-md-3">
+    <h2>Upcoming Tournaments</h2>
     <div class="well well-sm">
-        <% Tournament.all.order(date: :desc).each do |tournament| %>
+        <% Tournament.upcoming.order(date: :desc).each do |tournament| %>
            <p class="<%= tournament.current? ? "lead" : "text-muted" %>"> <%= link_to tournament.name, tournament %> - <%= tournament.date.stamp("May 5th, 2016") %></p>
         <% end %>
     </div>
+</div>
+
 </div>

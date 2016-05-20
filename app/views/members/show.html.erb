@@ -1,2 +1,4 @@
-<h1>Members#show</h1>
-<p>Find me in app/views/members/show.html.erb</p>
+<h1><%= @member.full_name %></h1>
+<div class="col-md-12 well">
+    <%= render @member.fish %>
+</div>

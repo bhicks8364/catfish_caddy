@@ -1,40 +1,46 @@
-<h2 class="color text-<%= fish_color(@fish) %>"><%= @fish.color.name %></h2>
-<div class="col-md-6 color-block <%= @fish.color.present? ? @fish.color.name.downcase : "" %>">
+<div class="col-md-12 mainpage">
+<h2 class="bold">
+  <%= link_to @fish.tournament.name, @fish.tournament %>
+</h2>
+ 
+<div class="col-md-8 well">
 <div id="alert-status"></div>
 <h1 id="status" class="bold text-right">
   <%= status(@fish) %><br>
   <%= link_to 'Edit', edit_fish_path(@fish), class: "btn btn-default" if @fish.returned   %> 
 </h1>
-<div id="alert-status"><h2><%= link_to "Throw Back", throw_back_tournament_fish_path(@tournament, @fish), id: "throw-btn", method: :patch, remote: true if !@fish.returned %></h2></div>
-
 <h1>
-  <strong>Weight:</strong>
-  <%= @fish.weight %>
+  <strong>Weight:</strong><br>
+  <%= pluralize(@fish.weight, "lb") %>
 </h1>
-<div class="btn-group">
+<hr>
+  <% if @fish.over_28 %>
+<h1 class="bold text-<%= fish_color(@fish) %>">
+  <strong>Over 28 inches</strong>
+</h1>
+<% end %>
+<div class="btn-group btn-justified">
   <%= link_to 'Edit', edit_fish_path(@fish), class: "btn btn-default" if !@fish.returned %>
   <%= link_to 'Back to Tournament', tournament_path(@tournament), class: "btn btn-default" %>
   <%= link_to 'Back', fish_index_path, class: "btn btn-default"  %>
 </div>
-<hr>
-  
-<p>
-  <strong>Over 28:</strong>
-  <%= @fish.over_28 %>
-</p>
+<div id="alert-status"><h2><%= link_to "Throw Back", throw_back_tournament_fish_path(@tournament, @fish), class: "btn btn-danger big-btn", 
+id: "throw-btn", method: :patch, remote: true if !@fish.returned %></h2></div>
 
-<p class="lead">
-  <strong>Tournament:</strong>
-  <%= link_to @fish.tournament.name, @fish.tournament %>
-</p>
- 
 </div>
-<div class="col-md-6 well">
+<div class="col-md-4 <%= @fish.color.present? ? @fish.color.name.downcase : "" %>">
+  <div class="text-center">
+    
     <% if @fish.image_id? %>
-      <%= image_tag attachment_url(@fish, :image, :fill, 300, 300) %>
+      <%= image_tag attachment_url(@fish, :image, :fill, 300, 300), class: "fish-img" %>
+      
   <%else %>
-      <p>No Image</p>
+      <div class="no-image">
+        <p class="text-center">No Image</p>
+      </div>
   <% end %>
+  </div>
+    
  </div>
 
-
+</div>
