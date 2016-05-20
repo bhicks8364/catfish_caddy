@@ -11,9 +11,9 @@
   <div class="col-md-6 <%= fish.color.name.present? ? fish.color.name.downcase : "" %>">
     <%  if fish.image_id.present? %>
     
-     <%= image_tag attachment_url(fish, :image, :fill, 100, 100), fallback: "fish_1.png" %>
+     <%= image_tag attachment_url(fish, :image, :fill, 100, 100) %>
      <% else %>
-     <%= image_tag("fish_1.png", class: "icon #{ fish.color.name.present? ? fish.color.name.downcase : "" }")  if fish.image_id.nil? %>
+     <h2 class="color text-center text-muted">NO IMAGE</h4>
     <% end %>
   </div>
   <% end %>
