@@ -6,7 +6,7 @@
  
 <div class="col-md-6">
   <%= link_to 'New Fish', new_tournament_fish_path(@tournament), class: "btn btn-success btn-lg big-btn"  %>
-<%= render @tournament.members.distinct %>
+
   <h2>Stringer Total: <%= pluralize(@tournament.stringer_total, "lb") %></h2>
   <h4>Returned Total: <%= pluralize(@tournament.returned_total, "lb") %></h4>
   <p>
@@ -37,5 +37,8 @@
 <% end %>
 
 
+</div>
+<div class="col-md-6 well">
+  <%= render @tournament.members.distinct %>
 </div>
 

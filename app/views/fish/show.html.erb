@@ -10,7 +10,6 @@
   <%= link_to 'Edit', edit_fish_path(@fish), class: "btn btn-default" if @fish.returned   %> 
 </h1>
 <h1>
-  <strong>Weight:</strong><br>
   <%= pluralize(@fish.weight, "lb") %>
 </h1>
 <hr>
@@ -25,7 +24,7 @@
   <%= link_to 'Back', fish_index_path, class: "btn btn-default"  %>
 </div>
 <div id="alert-status"><h2><%= link_to "Throw Back", throw_back_tournament_fish_path(@tournament, @fish), class: "btn btn-danger big-btn", 
-id: "throw-btn", method: :patch, remote: true if !@fish.returned %></h2></div>
+data: {disable_with: "Releasing"}, id: "throw-btn", method: :patch, remote: true if !@fish.returned %></h2></div>
 
 </div>
 <div class="col-md-4 <%= @fish.color.present? ? @fish.color.name.downcase : "" %>">

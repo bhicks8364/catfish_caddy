@@ -6,5 +6,13 @@ module ApplicationHelper
             "Welcome to KatTracker!"
         end
     end
+    def page_title(title)
+        if title.present?
+            title += " | " 
+            title += "KatTracker"
+        else
+            "KatTracker"
+        end
+    end
     
 end
