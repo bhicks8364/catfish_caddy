@@ -1,20 +1,18 @@
 
-<div class="col-md-12 border">
+<div class="col-md-12 border" id="fish_<%=fish.id%>">
   <% if @tournament.nil? %>
   <h3><%= fish.tournament.name %></h3>
   <% end %>
   <div class="col-md-6">
     <p class="text-muted"><%= link_to fish.member.username, fish.member %> <span class="small pull-right"><%= time_ago_in_words(fish.created_at) %></span></p>
-    <h4 class="color text-center text-<%= fish_color(fish) %>"><%= pluralize(fish.weight, "lb") %></h4>
+    <h2 class="color text-center text-<%= fish_color(fish) %>"><%= pluralize(fish.weight, "lb") %>    </h2>
+    <p class="text-center"><%= fish.over_28? ? "Over 28 inches" : "" %></p>
   </div>
   <%= link_to fish do %>
-  <div class="col-md-6 <%= fish.color.name.present? ? fish.color.name.downcase : "" %>">
-    <%  if fish.image_id.present? %>
+  <div class="col-md-3 <%= fish.color.name.present? ? fish.color.name.downcase : "" %>">
     
-     <%= image_tag attachment_url(fish, :image, :fill, 100, 100) %>
-     <% else %>
-     <h2 class="color text-center text-muted">NO IMAGE</h4>
-    <% end %>
+     <%= image_tag("fish_1.png", class: "img-responsive") %>
+    
   </div>
   <% end %>
   <% if !fish.returned %>

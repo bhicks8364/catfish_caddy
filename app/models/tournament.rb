@@ -19,7 +19,7 @@ class Tournament < ActiveRecord::Base
     scope :current, -> { where(status: "Open")}
     scope :upcoming, -> {
                     start = Date.current
-                    ending = Date.current + 14.days
+                    ending = Date.current + 30.days
                     where(date: start...ending)}
     def to_param
         if name.present?
@@ -38,7 +38,7 @@ class Tournament < ActiveRecord::Base
     end
     
     def on_deck
-        fish.on_stringer.order(weight: :desc).last
+        stringer_fish.order(weight: :desc).last
     end
     
     def current?
@@ -48,6 +48,10 @@ class Tournament < ActiveRecord::Base
     def available_colors
         all_colors = Color.all
         all_colors - colors
+    end
+    
+    def is_open?
+        status == "Open"
     end
     
     

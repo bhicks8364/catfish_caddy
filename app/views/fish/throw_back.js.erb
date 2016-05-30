@@ -1,4 +1,4 @@
 $("#alert-status").html("You threw it BACK!!!");
-$("<%= escape_javascript(render @fish) %>").appendTo("#stringer");
+$("<%= escape_javascript(render @fish) %>").appendTo("#returned-list");
 $("#status").html("<%= @fish.returned ? "Returned" : "ON STRINGER" %>");
 $("#throw-btn").hide();

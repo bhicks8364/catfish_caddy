@@ -25,7 +25,7 @@ class Fish < ActiveRecord::Base
     belongs_to :color
     belongs_to :member
     attachment :image
-    default_scope { order(created_at: :desc) }
+    # default_scope { order(created_at: :desc) }
     scope :returned, -> { where(returned: true) }
     scope :on_stringer, -> { where(returned: false) }
     validates :tournament_id, presence: true
