@@ -24,10 +24,13 @@
 
 <div class="well">
   <% if @current_member.team.present? %>
-  <h2>Your Team</h2>
+  <h2>Your Team: <%= @current_member.team.name %></h2>
   <%= f.association :team, input_class: "form-control", prompt: "Select your Team" %>
    <hr>
-   <% render @current_member.team.members %>
+   <h3>Current Team Members</h3>
+  <% @current_member.team.members.each do |member| %>
+    <%= render "members/member", member: member %>
+  <% end %>
   <% else %>
   <h2>Choose a Team</h2>
   <%= f.association :team, input_class: "form-control", prompt: "Select your Team" %>

@@ -47,6 +47,18 @@ a:hover {
     -moz-border-radius: 8px;
     border-radius: 8px;
 }
+#main {
+    margin-top: -25px;
+    padding-top: 25px;
+    background-color: rgba(255, 255, 255, 0.58);
+    min-height: 1900px;
+}
+.light {
+    background-color: rgba(255, 255, 255, 0.58);
+}
+.form-control {
+    background-color: white;
+}
 
 .simple_form {
     width: 500px;
@@ -75,4 +87,12 @@ a:hover {
 }
 .fish-img {
     margin: 10px;
+}
+#navbar-logo {
+    height: 25px;
+    display: inline;
+    margin-right: 5px;
+    // margin-left: 15px;
+    // margin-top: 10px;
+    margin-bottom: 5px;
 }

@@ -1,28 +1,34 @@
 <div class="col-md-12">
+   
 <h1 class="bold text-center">
   <%= @tournament.name %>
-  <span class="bold pull-right">This tournament is currently <%= @tournament.status.downcase %>.</span>
+  <% if !@tournament.is_open? %><span class="bold pull-right">This tournament is currently <%= @tournament.status.downcase %>.</span><% end %>
 </h1>
  
-<div class="col-md-6">
-  <%= link_to 'New Fish', new_tournament_fish_path(@tournament), class: "btn btn-success btn-lg big-btn" if @tournament.is_open? %>
+<div class="col-md-6 well well-sm">
+ 
 
-  <h2>Stringer Total: <%= pluralize(@tournament.stringer_total, "lb") %></h2>
-  <h4>Returned Total: <%= pluralize(@tournament.returned_total, "lb") %></h4>
+  <h2>Stringer<br> Count: <%= @tournament.stringer_fish.count %> | Weight: <%= pluralize(@tournament.stringer_total, "lb") %></h2>
+  <h4>Returned <br> Count: <%= @tournament.fish.returned.count %> | Weight: <%= pluralize(@tournament.returned_total, "lb") %></h4>
   <p>
     <strong>Location:</strong> <%= @tournament.location %> |    <strong>Date:</strong> <%= @tournament.date %>
     <hr>
-    <%= link_to 'Edit', edit_tournament_path(@tournament), class: "btn btn-default"  %> 
+    <%= link_to 'Edit Tournament', edit_tournament_path(@tournament), class: "btn btn-default"  %> 
   </p>
+  <%= link_to 'New Fish', new_tournament_fish_path(@tournament), class: "btn btn-success btn-lg big-btn" if @tournament.is_open? %>
+  <hr>
+  <h3>Current Team Members</h3>
+  <% @tournament.members.distinct.each do |member| %>
+    <%= render "members/member", member: member %>
+  <% end %>
 </div>
 
-<div class="col-md-6  well well-sm">
+<div class="col-md-6 well well-sm">
   <% if @stringer_count == 6  %>
   
     <h2> Next to go <hr><%= render @tournament.on_deck %></h2>
-    
+    <hr>
   <% end %>
-  <hr>
   <div class="col-md-12" id="stringer">
     <h1>Stringer <span class="badge"><%= @stringer_count %></span></h1>
     

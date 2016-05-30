@@ -1,10 +1,10 @@
 
 <div class="col-md-12 border" id="fish_<%=fish.id%>">
   <% if @tournament.nil? %>
-  <h3><%= fish.tournament.name %></h3>
+  <h3><%= link_to fish.tournament.name, fish.tournament %></h3>
   <% end %>
   <div class="col-md-6">
-    <p class="text-muted"><%= link_to fish.member.username, fish.member %> <span class="small pull-right"><%= time_ago_in_words(fish.created_at) %></span></p>
+    <p class="text-muted"><%= link_to fish.member.username, fish.member if @member.nil?%> <span class="small pull-right"><%= time_ago_in_words(fish.created_at) %></span></p>
     <h2 class="color text-center text-<%= fish_color(fish) %>"><%= pluralize(fish.weight, "lb") %>    </h2>
     <p class="text-center"><%= fish.over_28? ? "Over 28 inches" : "" %></p>
   </div>
@@ -15,10 +15,11 @@
     
   </div>
   <% end %>
-  <% if !fish.returned %>
-  <h3 id="status" class="bold text-right">
-  <%= status(fish) %><br>
-</h3>
+  <% if !fish.returned && fish.tournament.is_open? %>
+  <h4 id="status" class="bold text-right">
+  <%= status(fish) %>
+</h4>
+<br>
   <div id="alert-status"><h2><%= link_to "Throw Back", throw_back_tournament_fish_path(fish.tournament, fish), class: "btn btn-danger btn-sm pull-right", 
 id: "throw-btn", method: :patch, remote: true %></h2></div>
 

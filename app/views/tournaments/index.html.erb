@@ -1,35 +1,42 @@
-<h1>Listing Tournaments</h1>
+<div class="col-md-2">
+  <%= link_to 'New Tournament', new_tournament_path %>
+</div>
 
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Location</th>
-      <th>Date</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @tournaments.each do |tournament| %>
-      <tr>
-        <td><%= link_to tournament do %>
-        <%= tournament.name %>
+<div class="col-md-8">
+  <h1>All Tournaments</h1>
+  <div class="table-responsive">
+    <table class="table table-bordered light">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Location</th>
+          <th>Date</th>
+          <%  if @current_member.present? && @current_member.me? %> <th colspan="2"></th><% end %>
+        </tr>
+      </thead>
+    
+      <tbody>
+        <% @tournaments.each do |tournament| %>
+          <tr>
+            <td><%= link_to tournament do %>
+            <%= tournament.name %>
+            <% end %>
+            <p><b>Stringer:</b> <%= pluralize(tournament.stringer_total, "lb") %>
+            <small><%= tournament.fish.on_stringer.count %></small>
+            <br>
+            <b>Thrown Back:</b> <%= pluralize(tournament.returned_total, "lb") %>
+            </p></td>
+            <td><%= tournament.location %></td>
+            <td><%= tournament.date.strftime("%B %d, %Y") %></td>
+            <%  if @current_member.me? %>
+            <td><%= link_to 'Edit', edit_tournament_path(tournament)  %></td>
+            <td><%= link_to 'Destroy', tournament, method: :delete, data: { confirm: 'Are you sure?' }  %></td>
+            <% end %>
+          </tr>
         <% end %>
-        <p><b>Stringer:</b> <%= pluralize(tournament.stringer_total, "lb") %>
-        <small><%= tournament.fish.on_stringer.count %></small>
-        <br>
-        <b>Thrown Back:</b> <%= pluralize(tournament.returned_total, "lb") %>
-        </p></td>
-        <td><%= tournament.location %></td>
-        <td><%= tournament.date.strftime("%B %d, %Y") %></td>
-        <td><%= link_to 'Edit', edit_tournament_path(tournament)  if @current_member.me? %></td>
-        <td><%= link_to 'Destroy', tournament, method: :delete, data: { confirm: 'Are you sure?' }  if @current_member.me? %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      </tbody>
+    </table>
+  </div>
+</div>
 
-<br>
 
-<%= link_to 'New Tournament', new_tournament_path %>
